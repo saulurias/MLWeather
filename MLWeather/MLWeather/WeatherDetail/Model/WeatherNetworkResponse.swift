@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherResponse: Codable {
+struct WeatherNetworkResponse: Codable {
     struct Coordinates: Codable {
         let lon: Double
         let lat: Double
