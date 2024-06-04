@@ -10,8 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherDetailViewController" customModule="MLWeather" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="TIu-0C-1kZ" id="5Vr-4e-CeP"/>
                 <outlet property="cityNameLabel" destination="gaF-qq-wdq" id="CZh-ki-FjK"/>
                 <outlet property="mainAndLowTemperatureLabel" destination="mYN-vu-vaV" id="pOv-ap-TOd"/>
+                <outlet property="scrollView" destination="KLh-cG-NPJ" id="afi-3M-6qs"/>
                 <outlet property="temperatureLabel" destination="7de-5o-nJh" id="Pb4-FP-fxZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weatherDescriptionLabel" destination="VQq-th-ng6" id="oR3-fP-XgN"/>
@@ -27,13 +29,13 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLh-cG-NPJ">
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaF-qq-wdq">
-                            <rect key="frame" x="20" y="30" width="353" height="20.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaF-qq-wdq">
+                            <rect key="frame" x="20" y="30" width="353" height="0.0"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sleet.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GfZ-Lu-TfB">
-                            <rect key="frame" x="76.666666666666686" y="102" width="240" height="130.33333333333331"/>
+                            <rect key="frame" x="76.666666666666686" y="81.666666666666629" width="240" height="130.33333333333331"/>
                             <color key="tintColor" systemColor="systemTealColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="240" id="hgm-jL-QTi"/>
@@ -41,40 +43,50 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jQn-4N-4Pl">
-                            <rect key="frame" x="20" y="275.33333333333331" width="353" height="395.99999999999994"/>
+                            <rect key="frame" x="20" y="255" width="353" height="396"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌡️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7de-5o-nJh">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7de-5o-nJh">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="87"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQq-th-ng6">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQq-th-ng6">
                                     <rect key="frame" x="0.0" y="103" width="353" height="87"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mYN-vu-vaV">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mYN-vu-vaV">
                                     <rect key="frame" x="0.0" y="206" width="353" height="87"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Px4-0i-OBu">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Px4-0i-OBu">
                                     <rect key="frame" x="0.0" y="309" width="353" height="87"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="TIu-0C-1kZ">
+                            <rect key="frame" x="178" y="127.66666666666666" width="37" height="37"/>
+                            <color key="color" systemColor="systemGrayColor"/>
+                        </activityIndicatorView>
                     </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="TIu-0C-1kZ" firstAttribute="centerY" secondItem="GfZ-Lu-TfB" secondAttribute="centerY" id="0dA-lH-7jV"/>
                         <constraint firstItem="jQn-4N-4Pl" firstAttribute="top" secondItem="GfZ-Lu-TfB" secondAttribute="bottom" constant="45.000000000000057" id="9dL-rf-aKq"/>
                         <constraint firstItem="GfZ-Lu-TfB" firstAttribute="top" secondItem="gaF-qq-wdq" secondAttribute="bottom" constant="52" id="FSP-NK-zPM"/>
                         <constraint firstItem="gaF-qq-wdq" firstAttribute="top" secondItem="KLh-cG-NPJ" secondAttribute="top" constant="30" id="I48-0w-IPt"/>
                         <constraint firstAttribute="trailing" secondItem="gaF-qq-wdq" secondAttribute="trailing" constant="20" symbolic="YES" id="P6r-ly-SAK"/>
                         <constraint firstItem="GfZ-Lu-TfB" firstAttribute="centerX" secondItem="gaF-qq-wdq" secondAttribute="centerX" id="PHm-Ic-Fev"/>
                         <constraint firstItem="gaF-qq-wdq" firstAttribute="leading" secondItem="NXY-ix-IiM" secondAttribute="leading" constant="20" id="PSR-eI-hwh"/>
+                        <constraint firstItem="TIu-0C-1kZ" firstAttribute="centerX" secondItem="GfZ-Lu-TfB" secondAttribute="centerX" id="Twm-0l-VPp"/>
                         <constraint firstItem="jQn-4N-4Pl" firstAttribute="trailing" secondItem="gaF-qq-wdq" secondAttribute="trailing" id="fAd-OO-2kh"/>
                         <constraint firstItem="jQn-4N-4Pl" firstAttribute="leading" secondItem="gaF-qq-wdq" secondAttribute="leading" id="lTM-jX-wEh"/>
                         <constraint firstAttribute="bottom" secondItem="jQn-4N-4Pl" secondAttribute="bottom" constant="20" id="tp7-QQ-r7a"/>
@@ -98,8 +110,14 @@
     </objects>
     <resources>
         <image name="cloud.sleet.fill" catalog="system" width="118" height="128"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

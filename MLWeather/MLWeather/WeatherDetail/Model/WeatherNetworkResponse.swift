@@ -47,14 +47,6 @@ struct WeatherNetworkResponse: Codable {
         let all: Int
     }
 
-    struct Sys: Codable {
-        let type: Int
-        let id: Int
-        let country: String
-        let sunrise: Int
-        let sunset: Int
-    }
-
     let coord: Coordinates
     let weather: [Weather]
     let base: String
@@ -63,7 +55,6 @@ struct WeatherNetworkResponse: Codable {
     let wind: Wind
     let clouds: Clouds
     let dt: Int
-    let sys: Sys
     let timezone: Int
     let id: Int
     let name: String
