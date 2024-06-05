@@ -1,5 +1,11 @@
 # MLWeather 🌦
 
+
+
+https://github.com/saulurias/MLWeather/assets/11281932/3d5511ed-0ee3-4c3b-a32f-75b14552fd0d
+
+
+
 ## Overview
 
 MLWeather is an iOS application that displays current weather information for the device location using the OpenWeatherMap API. The app is built using UIKit and follows a modular MVVM-C (Model-View-ViewModel-Coordinator) architecture to ensure maintainability and scalability. The project includes a network layer for API requests and uses CocoaPods as the dependency manager with Kingfisher for image loading.
