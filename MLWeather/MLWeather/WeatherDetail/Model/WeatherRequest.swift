@@ -11,15 +11,15 @@ enum WeatherRequest: Request {
     case fetchWeather(latitude: Double, longitude: Double)
 
     var method: HTTPMethod {
-        return .get
+        .get
     }
 
     var path: String {
-        return "weather"
+        "data/2.5/weather"
     }
 
     var body: (any Encodable)? {
-        return nil
+        nil
     }
 
     var parameters: [URLQueryItem] {
@@ -28,13 +28,15 @@ enum WeatherRequest: Request {
             return [
                 URLQueryItem(name: "lat", value: "\(latitude)"),
                 URLQueryItem(name: "lon", value: "\(longitude)"),
-                URLQueryItem(name: "appid", value: "d4277b87ee5c71a468ec0c3dc311a724")
+                URLQueryItem(name: "appid", value: APIEnvironment.current.appId)
             ]
         }
     }
 
     func makeUrlRequest() -> URLRequest? {
-        var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/\(path)")
+        var components = URLComponents(
+            string: "\(APIEnvironment.current.baseURL)\(path)"
+        )
         components?.queryItems = parameters
         
         guard let url = components?.url else {
@@ -43,7 +45,8 @@ enum WeatherRequest: Request {
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.setValue(ContentType.json.rawValue, forHTTPHeaderField: "Content-Type")
+        request.setValue(ContentType.json.rawValue,
+                         forHTTPHeaderField: "Content-Type")
         if let body = body {
             request.httpBody = try? JSONEncoder().encode(body)
         }
