@@ -99,11 +99,18 @@ final class ErrorView: UIView {
     }
     
     // MARK: - Public Methods
+    
+    /// Configures the error view with a message and a retry action.
+    /// - Parameters:
+    ///   - message: The message to display.
+    ///   - retryAction: The action to perform when the retry button is tapped.
     func configure(with message: String, retryAction: @escaping () -> Void) {
         messageLabel.text = message
         self.retryAction = retryAction
     }
     
+    /// Shows the error view in the specified view.
+    /// - Parameter view: The view to display the error view in.
     func show(in view: UIView) {
         view.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +122,7 @@ final class ErrorView: UIView {
         ])
     }
     
+    /// Hides the error view.
     func hide() {
         self.removeFromSuperview()
     }

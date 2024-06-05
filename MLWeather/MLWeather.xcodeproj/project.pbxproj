@@ -254,6 +254,7 @@
 				B45A201E2C0FBEAC00C74E6F /* WeatherRequest.swift */,
 				B45A20252C0FC80000C74E6F /* WeatherFetcher.swift */,
 				B45A202B2C0FD12E00C74E6F /* WeatherDetailModel.swift */,
+				B45A20272C0FC81100C74E6F /* RemoteWeatherFetcher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,7 +262,6 @@
 		B45A20152C0FB8CE00C74E6F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B45A20272C0FC81100C74E6F /* RemoteWeatherFetcher.swift */,
 				B45A20172C0FB96400C74E6F /* WeatherDetailViewModel.swift */,
 			);
 			path = ViewModel;

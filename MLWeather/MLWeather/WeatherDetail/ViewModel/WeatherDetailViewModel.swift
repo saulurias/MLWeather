@@ -7,8 +7,11 @@
 
 import Foundation
 
+/// A ViewModel that handles the state and actions for weather details.
 final class WeatherDetailViewModel: ViewModel {
     
+    // MARK: - State
+    /// Represents the various states the ViewModel can be in.
     enum State {
         case idle
         case loading
@@ -16,12 +19,15 @@ final class WeatherDetailViewModel: ViewModel {
         case error(String)
     }
 
+    // MARK: - Action
+    /// Represents the actions that can be sent to the ViewModel.
     enum Action {
         case loadWeather(latitude: Double, longitude: Double)
         case weatherLoaded(WeatherDetailModel)
         case loadingFailed(String)
     }
     
+    // MARK: - Properties
     private let weatherFetcher: WeatherFetcher
     private var state: State = .idle {
         didSet {
@@ -29,12 +35,19 @@ final class WeatherDetailViewModel: ViewModel {
         }
     }
     
+    /// A closure that gets called whenever the state changes.
     var stateChanged: ((State) -> Void)?
     
+    // MARK: - Initialization
+    /// Initializes a new instance of `WeatherDetailViewModel`.
+    /// - Parameter weatherFetcher: The fetcher used to retrieve weather data. Defaults to `RemoteWeatherFetcher`.
     init(weatherFetcher: WeatherFetcher = RemoteWeatherFetcher()) {
         self.weatherFetcher = weatherFetcher
     }
     
+    // MARK: - Public Methods
+    /// Sends an action to the ViewModel.
+    /// - Parameter action: The action to be sent.
     func send(action: Action) {
         switch action {
         case .loadWeather(let latitude, let longitude):
@@ -46,14 +59,16 @@ final class WeatherDetailViewModel: ViewModel {
         }
     }
     
+    // MARK: - Private Methods
     private func loadWeather(latitude: Double, longitude: Double) {
         state = .loading
         weatherFetcher.fetchWeather(latitude: latitude, longitude: longitude) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherNetworkResponse):
-                    let weatherDetailModel = self?.mapToWeatherDetailModel(from: weatherNetworkResponse)
-                    self?.send(action: .weatherLoaded(weatherDetailModel!))
+                    if let weatherDetailModel = self?.mapToWeatherDetailModel(from: weatherNetworkResponse) {
+                        self?.send(action: .weatherLoaded(weatherDetailModel))
+                    }
                 case .failure(let error):
                     self?.send(action: .loadingFailed(error.localizedDescription))
                 }
