@@ -28,9 +28,9 @@ enum APIEnvironment: String {
     var appId: String {
         switch self {
         case .production:
-            return "d4277b87ee5c71a468ec0c3dc311a724"
+            return "YOUR_API_KEY"
         case .development:
-            return "d4277b87ee5c71a468ec0c3dc311a724"
+            return "YOUR_API_KEY"
         }
     }
     
