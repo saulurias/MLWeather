@@ -32,8 +32,8 @@ class APIEnvironmentTests: XCTestCase {
     }
 
     func testAppId() {
-        XCTAssertEqual(APIEnvironment.production.appId, "d4277b87ee5c71a468ec0c3dc311a724")
-        XCTAssertEqual(APIEnvironment.development.appId, "d4277b87ee5c71a468ec0c3dc311a724")
+        XCTAssertEqual(APIEnvironment.production.appId, "YOUR_API_KEY")
+        XCTAssertEqual(APIEnvironment.development.appId, "YOUR_API_KEY")
     }
 
     func test_currentEnvironment_default() {

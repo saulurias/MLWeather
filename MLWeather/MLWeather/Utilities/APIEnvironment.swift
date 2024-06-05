@@ -24,14 +24,21 @@ enum APIEnvironment: String {
         }
     }
     
-    /// The app identifier for the current environment.
+    /// The app identifier for the current environment.    
     var appId: String {
+        let apiKey: String
         switch self {
         case .production:
-            return "YOUR_API_KEY"
+            apiKey = "YOUR_API_KEY" // Replace with your actual API key
         case .development:
-            return "YOUR_API_KEY"
+            apiKey = "YOUR_API_KEY" // Replace with your actual API key
         }
+        
+        if !isRunningTests {
+            assert(apiKey != "YOUR_API_KEY", "API key must be set in APIEnvironment.swift at appId")
+        }
+        
+        return apiKey
     }
     
     /// The key for storing the environment in user defaults.
@@ -52,5 +59,11 @@ enum APIEnvironment: String {
         let defaults = UserDefaults(suiteName: groupId)
         defaults?.set(newEnvironment.rawValue, forKey: userDefaultsKey)
         defaults?.synchronize()
+    }
+}
+
+extension APIEnvironment {
+    private var isRunningTests: Bool {
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
     }
 }
