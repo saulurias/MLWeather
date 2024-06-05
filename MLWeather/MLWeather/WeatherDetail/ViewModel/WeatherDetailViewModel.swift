@@ -12,11 +12,24 @@ final class WeatherDetailViewModel: ViewModel {
     
     // MARK: - State
     /// Represents the various states the ViewModel can be in.
-    enum State {
+    enum State: Equatable {
         case idle
         case loading
         case loaded(WeatherDetailModel)
         case error(String)
+        
+        static func == (lhs: State, rhs: State) -> Bool {
+            switch (lhs, rhs) {
+            case (.idle, .idle), (.loading, .loading):
+                return true
+            case (.loaded(let lhsModel), .loaded(let rhsModel)):
+                return lhsModel == rhsModel
+            case (.error(let lhsMessage), .error(let rhsMessage)):
+                return lhsMessage == rhsMessage
+            default:
+                return false
+            }
+        }
     }
 
     // MARK: - Action
@@ -29,7 +42,7 @@ final class WeatherDetailViewModel: ViewModel {
     
     // MARK: - Properties
     private let weatherFetcher: WeatherFetcher
-    private var state: State = .idle {
+    var state: State = .idle {
         didSet {
             stateChanged?(state)
         }
