@@ -182,11 +182,11 @@
 		B45A1FC22C0FA17C00C74E6F = {
 			isa = PBXGroup;
 			children = (
+				66C21E9FDC8745D3152067D8 /* Frameworks */,
 				B45A1FCD2C0FA17C00C74E6F /* MLWeather */,
 				B45A1FE42C0FA17D00C74E6F /* MLWeatherTests */,
-				B45A1FCC2C0FA17C00C74E6F /* Products */,
 				2A224BAA095043BBAF33C00B /* Pods */,
-				66C21E9FDC8745D3152067D8 /* Frameworks */,
+				B45A1FCC2C0FA17C00C74E6F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
